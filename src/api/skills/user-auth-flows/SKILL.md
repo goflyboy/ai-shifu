@@ -7,6 +7,8 @@ description: Use when changing backend user auth, verification codes, token
 
 # User Auth Flows
 
+A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
+
 ## Core Rules
 
 - Keep repository, token-store, and auth-factory paths as the source of truth.
