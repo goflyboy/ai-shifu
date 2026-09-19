@@ -87,7 +87,7 @@ def build_frontmatter_records(category_dir: Path, category: str) -> list[DocReco
     """Build category-tagged records for non-index Markdown files in one metadata directory."""
     records: list[DocRecord] = []
     for path in sorted(category_dir.glob("*.md")):
-        if path.name == "index.md":
+        if path.name == "index.md" or path.name.endswith(".zh.md"):
             continue
         metadata = parse_frontmatter(path)
         title = metadata.get("title") or extract_title(path)
@@ -109,7 +109,7 @@ def build_reference_records() -> list[DocRecord]:
     """Build canonical reference records for Markdown files under docs/references."""
     records: list[DocRecord] = []
     for path in sorted((DOCS_ROOT / "references").glob("*.md")):
-        if path.name == "index.md":
+        if path.name == "index.md" or path.name.endswith(".zh.md"):
             continue
         records.append(
             DocRecord(
@@ -139,6 +139,7 @@ def build_execplan_records(subdir: str, status: str) -> list[DocRecord]:
             canonical="true",
         )
         for path in sorted(plan_dir.glob("*.md"))
+        if not path.name.endswith(".zh.md")
     ]
     return records
 

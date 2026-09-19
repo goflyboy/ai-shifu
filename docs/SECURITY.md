@@ -1,5 +1,7 @@
 # Security
 
+A Chinese translation is available in [`SECURITY.zh.md`](SECURITY.zh.md).
+
 ## Principles
 
 - Keep secrets and environment-specific credentials out of versioned docs,

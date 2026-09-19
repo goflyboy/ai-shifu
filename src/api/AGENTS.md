@@ -3,6 +3,8 @@
 This file routes backend work to the right source documents and keeps the
 hard backend constraints close to `src/api/`.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file to `src/api/`, including `flaskr/`, `migrations/`, `tests/`,

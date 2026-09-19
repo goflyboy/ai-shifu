@@ -8,6 +8,8 @@ canonical: true
 
 # Agent-First Harness Phase 2
 
+A Chinese translation is available in [`agent-first-harness-phase-2.zh.md`](agent-first-harness-phase-2.zh.md).
+
 ## Summary
 
 Extend the repository from the first-wave agent-first harness to a second-wave

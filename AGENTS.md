@@ -4,6 +4,8 @@ This root file is the repository entry point for coding agents. Start here,
 then move to the nearest subtree `AGENTS.md` and the knowledge docs it points
 to.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file across the repository unless a deeper `AGENTS.md` narrows

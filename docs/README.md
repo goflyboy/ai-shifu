@@ -3,6 +3,8 @@
 This repository treats versioned files as the system of record for product
 intent, engineering rules, and long-running execution context.
 
+A Chinese translation is available in [`README.zh.md`](README.zh.md).
+
 ## Layout
 
 - `../ARCHITECTURE.md`: top-level map of product surfaces and knowledge entry

@@ -1,5 +1,7 @@
 # Agent-First Harness Phase 2
 
+A Chinese translation is available in [`agent-first-harness-phase-2.zh.md`](agent-first-harness-phase-2.zh.md).
+
 This ExecPlan is a living document and must stay aligned with `PLANS.md`.
 
 ## Purpose / Big Picture

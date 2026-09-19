@@ -7,6 +7,8 @@ where repository knowledge lives, how the main product surfaces relate to one
 another, and which files act as the source of truth for design, execution, and
 validation.
 
+A Chinese translation is available in [`ARCHITECTURE.zh.md`](ARCHITECTURE.zh.md).
+
 ## System Surfaces
 
 - `src/api/`: Flask backend, service modules, persistence, provider

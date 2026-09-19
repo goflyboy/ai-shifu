@@ -4,6 +4,8 @@ This file owns engineering rules for the Docker surface under `docker/`,
 including compose files, local entry scripts, nginx configs, and deploy-facing
 environment examples.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file to `docker/`, especially `docker-compose*.yml`,

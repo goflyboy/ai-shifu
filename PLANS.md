@@ -4,6 +4,8 @@ This repository uses execution plans ("ExecPlans") for complex features,
 architecture changes, and multi-hour refactors. `PLANS.md` is the canonical
 specification for how those plans are written and maintained.
 
+A Chinese translation is available in [`PLANS.zh.md`](PLANS.zh.md).
+
 ## When To Use An ExecPlan
 
 Use an ExecPlan when work:

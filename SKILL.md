@@ -1,5 +1,7 @@
 # ai-shifu Skills Entry
 
+A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
+
 ## Scope
 
 - This file only keeps repository-level skill routing and boundary notes.

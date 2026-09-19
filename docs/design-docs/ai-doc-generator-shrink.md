@@ -8,6 +8,8 @@ canonical: true
 
 # AI Doc Generator Shrink And Baseline Restoration
 
+A Chinese translation is available in [`ai-doc-generator-shrink.zh.md`](ai-doc-generator-shrink.zh.md).
+
 ## Summary
 
 This change moves the repository from a fully generated AI-instruction layer

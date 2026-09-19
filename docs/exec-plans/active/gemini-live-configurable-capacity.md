@@ -1,5 +1,7 @@
 # Configurable Gemini Live admission capacity
 
+A Chinese translation is available in [`gemini-live-configurable-capacity.zh.md`](gemini-live-configurable-capacity.zh.md).
+
 ## Purpose / Big Picture
 Allow US operators to increase Live capacity without patching running containers. Keep current defaults for other environments.
 

@@ -1,21 +1,21 @@
 # Cook Web Skills
 
-A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
+本文是 [`SKILL.md`](SKILL.md) 的中文译本。代理、工具链和校验仍以英文版为准；若两份文档不一致，以英文版为准。
 
-## Layering Rules
+## 分层规则
 
-- Keep `SKILL.md` for long-lived cross-page or cross-module constraints and the skill index.
-- Keep `skills/xxx/SKILL.md` for scenario-specific triggers, execution steps, and acceptance checks.
-- `SKILL.md` must not carry long troubleshooting playbooks; workflow-heavy content belongs in focused skills.
-- Stable structural rules should go to the local `AGENTS.md / CLAUDE.md` first. Only workflow-oriented guidance should live in a skill.
+- 把 `SKILL.md` 留给长期有效的跨页面或跨模块约束，以及 skill 索引。
+- 把 `skills/xxx/SKILL.md` 留给场景特定的触发条件、执行步骤和验收检查。
+- `SKILL.md` 不得承载长篇故障排查手册；偏工作流的内容应放进聚焦 skill。
+- 稳定的结构规则应先放进本地 `AGENTS.md / CLAUDE.md`。只有面向工作流的指引才应放在 skill 中。
 
-## Project-Wide Constraints
+## 项目范围约束
 
-- Treat URL parameters as explicit overrides: use `lessonid` for lesson targeting, let `listen` query override learner mode when present, and fall back to course-level `tts_enabled` to decide whether listen mode is available while keeping `read` as the default. When no course-scoped `course_learning_mode:*` storage exists yet and there is no explicit URL override, persist the resolved default mode immediately so first-load behavior and local storage stay in sync.
+- 把 URL 参数视为显式覆盖：用 `lessonid` 定位课时，当存在 `listen` query 时覆盖学习模式，并回退到课程级 `tts_enabled` 判断听课模式是否可用，同时把 `read` 作为默认值。当还没有课程范围的 `course_learning_mode:*` 存储，也没有显式 URL 覆盖时，立即持久化解析后的默认模式，让首次加载行为和 local storage 保持同步。
 - 学习页如果要新增和初始化模式有关的埋点，优先在写回 `course_learning_mode:*` 之前先读取并上报原始 localStorage 值，避免“首进自动补写默认值”覆盖掉用户上一次真实固定的模式。
 - 当 `listen=true` 先以听课模式初始化、后续又因为旧课兼容或能力检查回退到阅读模式时，要基于当前模式重新同步移动端正文里的追问按钮，不要只依赖首轮数据装配结果。
-- Streaming chat must use `element_bid` as the stable render key, with compatibility fields backfilled in the shared normalization entry point.
-- When the same logic is reused by more than two files, extract it into shared `utils/constants/hooks` instead of duplicating it.
+- 流式聊天必须使用 `element_bid` 作为稳定渲染键，并在共享规范化入口回填兼容字段。
+- 当同一套逻辑被超过两个文件复用时，抽到共享的 `utils/constants/hooks`，而不是复制一份。
 - 做 i18n key usage 排查时，不要把 `*.test.*`、`*.spec.*`、`__tests__` 里的断言文案、namespace 字符串或拼接后的展示文本当成真实翻译 key；优先统计生产代码里的 `t()`、`i18n.t()`、`Trans` 和符合完整 key 结构的常量。
 - 积分套餐权益文案优先以 `BillingOverviewCards` 里的共享 feature key 列表作为单一来源；删除某项权益时，要同时清理 `billing.json`、预注册翻译使用代码、相关测试数据和 `i18n-keys.d.ts` 残留。
 - 账务/积分页面如果同一类时间展示同时出现在卡片、表格或 tooltip 中，优先抽到 `src/lib/billing.ts` 的共享格式化方法；涉及多语言文案时，同步更新所有支持的 locale、`i18n-keys.d.ts` 和对应组件测试，避免只改页面不改类型与回归用例。
@@ -53,9 +53,9 @@ A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
 - 登录页图形验证码图片按钮如果设计要求跟随验证码图片宽度自适应，优先让按钮固定目标高度、图片使用 `h-full w-auto`，不要保留固定宽度；刷新入口优先合并到验证码图片按钮的 hover/focus 蒙层，不要额外放独立刷新按钮；验证码图片按钮和获取验证码按钮需要视觉对齐时，优先统一 `min-width` 并允许倒计时等长文案自适应撑开，必要时在具体按钮上覆盖默认 padding。
 - 登录页表单新增字段标题或提示文案时，必须同步更新所有支持的 locale 翻译文件和 `src/types/i18n-keys.d.ts`，不要在组件里写死中文、英文或其它用户可见文案。
 - 对于明确暂不支持移动端的页面，优先复用共享的国际化弹窗组件统一提示，避免在多个页面分别写一套移动端拦截文案和状态逻辑。
-- For system interaction buttons such as `_sys_pay`, prefer ai-shifu-side render overrides to keep repeatable CTAs clickable without patching `markdown-flow-ui`.
-- When adapting Cook Web payloads into `markdown-flow-ui` slide elements, normalize optional API fields into the stricter slide contract first instead of passing broader API types through render layers.
-- When listen-mode misses trailing interaction cards, check whether `outline_item_update: completed` arrived before the final `element` events; completion must not cause post-completion interaction markers to be dropped.
+- 对于 `_sys_pay` 这类系统交互按钮，优先使用 ai-shifu 侧的渲染覆盖，让可重复 CTA 保持可点击，而不去修补 `markdown-flow-ui`。
+- 当把 Cook Web payload 适配成 `markdown-flow-ui` slide 元素时，先把可选 API 字段规范化成更严格的 slide 契约，而不是把更宽的 API 类型一路传到渲染层。
+- 当听课模式漏掉尾部交互卡片时，检查 `outline_item_update: completed` 是否早于最终 `element` 事件到达；完成态不得导致完成后的交互标记被丢弃。
 - 听课模式追问弹层的展开/收起应和阅读模式一样透传给 `AskBlock.isExpanded`，不要在关闭时直接卸载 `AskBlock`；这样 `AskBlock` 内部的追问打字机收起清理和未完成流式追问状态才能保持一致。
 - 当新增共享 loading 动画时，优先放在 `src/components/loading/` 并以命名导出追加能力，不要直接替换已有默认 loading；动画节奏、尺寸和间距用可配置 props 暴露，保证旧调用方零破坏。
 - 听课模式字幕尾部清洗只移除不允许的结束标点，遇到右引号、右括号这类成对符号的结尾符必须保留；即使这些结尾符后面还跟着句号、逗号等待过滤标点，也要按从右向左的顺序先保留结尾符、再剥离无效标点，并补齐 `。”`、`），`、`？”。` 一类回归测试。
@@ -88,7 +88,7 @@ A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
 - admin 表格单元格如果使用省略号截断，优先通过 `AdminTooltipText` 渲染完整内容，并确保 tooltip trigger 带 `block w-full min-w-0 truncate` 这类父宽度约束；当省略号由 `td` 或 table layout 外层裁剪产生、trigger 自身无法稳定判断 overflow 时，传入 `forceTooltip` 保证 hover 可查看完整内容。
 - admin 页面标题右侧如果是弱化的文本工具操作，优先用 `Button variant="ghost"` 搭配 `--base-foreground`，图标和文字共用当前色，14px/medium/20px token 对齐，图标尺寸优先 `16px`，图文间距优先 `6px`。
 
-## Skills Index
+## Skills 索引
 
 - `skills/chat-layout-width-detection/SKILL.md`
 - `skills/interaction-user-input-defaults/SKILL.md`
@@ -109,7 +109,7 @@ A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
 - `skills/admin-filter-layout/SKILL.md`
 - `skills/admin-table-visual-system/SKILL.md`
 
-## Usage Rules
+## 使用规则
 
-- Module-level `AGENTS.md` files may reference skills from here, but they must not copy skill content back into directory rules.
-- If the same frontend troubleshooting workflow repeats across tasks, add a focused skill instead of expanding `AGENTS.md`.
+- 模块级 `AGENTS.md` 文件可以从这里引用 skill，但不得把 skill 内容复制回目录规则。
+- 如果同一套前端故障排查工作流在多个任务中重复出现，就新增一份聚焦 skill，而不是继续扩大 `AGENTS.md`。

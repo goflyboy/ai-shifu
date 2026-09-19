@@ -1,5 +1,7 @@
 # api Skills
 
+A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
+
 ## Layering
 
 - Keep durable structural rules in `AGENTS.md` and `CLAUDE.md`.

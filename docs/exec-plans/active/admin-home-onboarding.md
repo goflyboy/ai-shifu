@@ -1,5 +1,7 @@
 # Admin Home Onboarding
 
+A Chinese translation is available in [`admin-home-onboarding.zh.md`](admin-home-onboarding.zh.md).
+
 ## Purpose / Big Picture
 
 Maintain the retained creator onboarding contract after the admin-home flow was

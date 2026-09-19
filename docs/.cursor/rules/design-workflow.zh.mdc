@@ -1,0 +1,19 @@
+---
+description: 仓库知识库与 ExecPlan 的文档工作流
+globs:
+alwaysApply: false
+---
+
+# Cursor 规则：文档知识工作流
+
+本文是 [`design-workflow.mdc`](design-workflow.mdc) 的中文译本。代理、工具链和校验仍以英文版为准；若两份文档不一致，以英文版为准。
+
+- 把设计决策放在 `docs/design-docs/`，把产品行为规格放在 `docs/product-specs/`，把长期有效的参考放在 `docs/references/`。
+
+- 复杂工作使用 `PLANS.md` 加上 `docs/exec-plans/active/`，而不是仓库根目录的 `tasks.md`。
+
+- 在变更知识结构文档或元数据后，用 `python scripts/build_repo_knowledge_index.py` 重新生成索引和文档清单。
+
+- 在变更边界规则参考或已提交基线后，运行 `python scripts/check_architecture_boundaries.py`。
+
+- 如果一项设计改变了实现期望，当最近的 `AGENTS.md`、`CLAUDE.md` 和兼容指令文件变得过时时，要在同一次变更中更新它们。

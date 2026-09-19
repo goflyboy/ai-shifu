@@ -1,5 +1,7 @@
 # Reliability
 
+A Chinese translation is available in [`RELIABILITY.zh.md`](RELIABILITY.zh.md).
+
 ## Goals
 
 - Keep repository knowledge current and mechanically validated.

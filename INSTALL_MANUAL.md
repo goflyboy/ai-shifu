@@ -1,5 +1,7 @@
 # INSTALL FROM SOURCE CODE STEP BY STEP
 
+A Chinese translation is available in [`INSTALL_MANUAL.zh.md`](INSTALL_MANUAL.zh.md).
+
 ## Prerequisites
 
 ### Architecture Overview

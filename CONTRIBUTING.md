@@ -2,6 +2,8 @@
 
 Thank you for your interest in contributing to AI-Shifu! Before posting in the issue tracker, please take a moment to review these guidelines.
 
+A Chinese translation is available in [`CONTRIBUTING.zh.md`](CONTRIBUTING.zh.md).
+
 ## Before Creating an Issue
 
 1. **Search First**

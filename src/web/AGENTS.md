@@ -3,6 +3,8 @@
 This file routes frontend work to the right source documents and keeps the
 hard frontend constraints close to `src/web/`.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file to `src/web/`, including app routes, components,

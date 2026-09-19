@@ -4,6 +4,8 @@ This file owns engineering rules for repository automation under `.github/`,
 including workflow YAMLs, release automation, issue templates, and GitHub-side
 AI compatibility instruction files.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file to `.github/`, especially `.github/workflows/`,

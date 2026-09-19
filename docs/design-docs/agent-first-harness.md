@@ -8,6 +8,8 @@ canonical: true
 
 # Agent-First Harness Migration
 
+A Chinese translation is available in [`agent-first-harness.zh.md`](agent-first-harness.zh.md).
+
 ## Summary
 
 Rework the repository around an agent-first harness so repository knowledge,

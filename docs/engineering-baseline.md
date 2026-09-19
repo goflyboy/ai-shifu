@@ -7,6 +7,8 @@ here. The layered `AGENTS.md` files remain the hard-rule entry points, and
 this handbook carries the expanded rationale, examples, and troubleshooting
 details behind those rules.
 
+A Chinese translation is available in [`engineering-baseline.zh.md`](engineering-baseline.zh.md).
+
 ## Quick Start
 
 ### Most Common Tasks

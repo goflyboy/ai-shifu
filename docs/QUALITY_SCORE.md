@@ -1,5 +1,7 @@
 # Quality Score
 
+A Chinese translation is available in [`QUALITY_SCORE.zh.md`](QUALITY_SCORE.zh.md).
+
 ## Purpose
 
 Track repository quality from an agent-first perspective so cleanup and

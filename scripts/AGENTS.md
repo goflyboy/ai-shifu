@@ -3,6 +3,8 @@
 This file owns engineering rules for shared maintenance and generation scripts
 under `scripts/`, including translation utilities and AI-doc tooling.
 
+A Chinese translation is available in [`AGENTS.zh.md`](AGENTS.zh.md).
+
 ## Scope
 
 - Apply this file to `scripts/`, including Python and JavaScript generators,

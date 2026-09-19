@@ -1,8 +1,11 @@
 # Account session analytics contract
 
+A Chinese translation is available in [`account-session-analytics.zh.md`](account-session-analytics.zh.md).
+
 Covers the two user-facing flows added for account session control: approving a
 command-line client in the browser (`/login/device`), and reviewing or ending
 sign-in sessions from the account menu.
+
 
 Both are asynchronous workflows where a single signal cannot describe the
 outcome: a prompt that is opened and abandoned looks identical to one that was
