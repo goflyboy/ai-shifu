@@ -14,17 +14,25 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_RETRIES=10 \
     PIP_NO_CACHE_DIR=1
 
-# ensure /etc/apt/sources.list exists and change APT source to aliyun mirror
-RUN if [ -f /etc/apt/sources.list ]; then \
-    sed -i 's|http://deb.debian.org/debian|http://mirrors.aliyun.com/debian|g' /etc/apt/sources.list; \
-    sed -i 's|http://security.debian.org/debian-security|http://mirrors.aliyun.com/debian-security|g' /etc/apt/sources.list; \
+# Switch APT sources to aliyun mirror.
+# Debian >=12 (bookworm/trixie) ships the deb822 format at
+# /etc/apt/sources.list.d/debian.sources, NOT the legacy /etc/apt/sources.list.
+# Patch every format that exists so the build works on both old and new bases.
+RUN set -eux; \
+    if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
+    sed -i 's|http://deb.debian.org/debian|https://mirrors.aliyun.com/debian|g' /etc/apt/sources.list.d/debian.sources; \
+    sed -i 's|http://deb.debian.org/debian-security|https://mirrors.aliyun.com/debian-security|g' /etc/apt/sources.list.d/debian.sources; \
+    echo "patched deb822 debian.sources"; \
+    fi; \
+    if [ -f /etc/apt/sources.list ]; then \
+    sed -i 's|http://deb.debian.org/debian|https://mirrors.aliyun.com/debian|g' /etc/apt/sources.list; \
+    sed -i 's|http://security.debian.org/debian-security|https://mirrors.aliyun.com/debian-security|g' /etc/apt/sources.list; \
+    echo "patched legacy sources.list"; \
+    fi; \
     apt-get update && \
     apt-get install -y python3-pip && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*; \
-    else \
-    echo "No sources.list found!"; \
-    fi
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -40,7 +48,19 @@ FROM python:3.11-slim
 ENV SHARED_I18N_ROOT=/app/i18n
 
 # Install FFmpeg for audio processing (pydub dependency)
-RUN apt-get update && \
+# NOTE: this stage needs its own mirror switch - the deb822 .sources file is
+# used by python:3.11-slim (debian trixie), so apt would otherwise hit
+# deb.debian.org directly and fail behind the firewall.
+RUN set -eux; \
+    if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
+    sed -i 's|http://deb.debian.org/debian|https://mirrors.aliyun.com/debian|g' /etc/apt/sources.list.d/debian.sources; \
+    sed -i 's|http://deb.debian.org/debian-security|https://mirrors.aliyun.com/debian-security|g' /etc/apt/sources.list.d/debian.sources; \
+    fi; \
+    if [ -f /etc/apt/sources.list ]; then \
+    sed -i 's|http://deb.debian.org/debian|https://mirrors.aliyun.com/debian|g' /etc/apt/sources.list; \
+    sed -i 's|http://security.debian.org/debian-security|https://mirrors.aliyun.com/debian-security|g' /etc/apt/sources.list; \
+    fi; \
+    apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

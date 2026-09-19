@@ -85,11 +85,19 @@ services:
       MYSQL_DATABASE: ai-shifu
     image: mysql:8.0
     restart: unless-stopped
+    # Trim MySQL memory footprint so it coexists with the API/Celery workers
+    # inside the Docker VM. Disabling performance_schema alone frees a
+    # substantial amount (it otherwise materialises hundreds of .sdi tables).
+    command:
+      - --innodb-buffer-pool-size=128M
+      - --performance-schema=OFF
+      - --max-connections=50
     volumes:
       - ./mysql_data:/var/lib/mysql
   ai-shifu-redis:
     container_name: ai-shifu-redis
     image: redis:7-alpine
     restart: unless-stopped
+    command: ["redis-server", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
     volumes:
       - ./redis_data:/data

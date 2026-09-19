@@ -7,6 +7,8 @@ description: Use when changing backend shifu authoring, draft history, publish,
 
 # Shifu Authoring Flow
 
+A Chinese translation is available in [`SKILL.zh.md`](SKILL.zh.md).
+
 ## Core Rules
 
 - Preserve the separation between draft state, publish state, and history logs.
